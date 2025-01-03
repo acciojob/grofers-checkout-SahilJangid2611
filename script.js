@@ -10,13 +10,19 @@ const getSum = () => {
         total += parseInt(price.textContent);
     });
 
-    const totalRow = document.createElement('tr');
-    const totalCell = document.createElement('td');
-    totalCell.setAttribute('colspan', '2');
-    totalCell.textContent = 'Total Price: Rs ' + total;
-
-    totalRow.appendChild(totalCell);
-    document.querySelector('table').appendChild(totalRow);
+    let totalRow = document.getElementById('ans');
+    
+    if (!totalRow) {
+        totalRow = document.createElement('tr');
+        totalRow.setAttribute('id', 'ans');
+        const totalCell = document.createElement('td');
+        totalCell.setAttribute('colspan', '2');
+        totalCell.textContent = 'Total Price: Rs ' + total;
+        totalRow.appendChild(totalCell);
+        document.querySelector('table').appendChild(totalRow);
+    } else {
+        totalRow.querySelector('td').textContent = 'Total Price: Rs ' + total;
+    }
 };
 
 getSumBtn.addEventListener("click", getSum);
